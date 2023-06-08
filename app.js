@@ -15,7 +15,7 @@ const initDbAndServer= async ()=>{
             driver:sqlite3.Database,
         });
         app.listen(3000,()=>{console.log('Server running');});
-    }catch(err)={
+    }catch(err){
         console.log(`Error: ${err.message}`);
     }
 };
@@ -75,7 +75,7 @@ app.post("/login/", async (request, response) => {
         response.send('Invalid User');
     }else{
         const isPasswordMatched=await bcrypt.compare(password,dbUser.password);
-        if(isPasswordMatched{
+        if(isPasswordMatched){
             const jwtToken=jwt.sign(dbUser,"MY_SECRET_TOKEN");
             response.send({jwtToken});
         }else{
